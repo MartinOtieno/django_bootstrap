@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import Booking
+
 
 # Home
 def index_page(request):
@@ -39,3 +41,19 @@ def menu_page(request):
 def booking_page(request):
     """ Display the booking page """
     return render(request, "booking.html")
+
+
+# Retrieve all bookings
+def retrieve_bookings(request):
+    """ Retrieve/fetch all Bookings """
+    #create a variable to store these bookings
+    bookings = Booking.objects.all()
+    context = {'bookings':bookings}
+    return render(request, 'show_booking.html', context)
+
+#Delete
+def delete_booking(request, id):
+    """ Deleting """
+    booking = Booking.objects.get(id=id) #fetch the particular booking by id
+    booking.delete()
+    # return redirect(myapp:show_bookings)#just remain on the same page
