@@ -3,7 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<main class="main">
 
   <!-- Hero Section -->
   <section id="hero" class="hero section light-background">
@@ -13,7 +12,7 @@
           <h1 data-aos="fade-up">Enjoy Your Healthy<br>Delicious Food</h1>
           <p data-aos="fade-up" data-aos-delay="100">We are a team of talented designers making websites with Bootstrap</p>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-            <a href="#book-a-table" class="btn-get-started">Book a Table</a>
+            <a href="{% url 'booking_page' %}" class="btn-get-started">Book a Table</a>
             <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center">
               <i class="bi bi-play-circle"></i><span>Watch Video</span>
             </a>
@@ -25,6 +24,5 @@
       </div>
     </div>
   </section><!-- /Hero Section -->
-
-</main>
+  
 {% endblock %}
