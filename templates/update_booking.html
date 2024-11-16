@@ -24,7 +24,7 @@
             <td>{{ booking.people }}</td>
             <td>{{ booking.message }}</td>
             <td>
-                <a href="{% url 'myapp:update_booking' %}"></a>
+                    <a href="{% url 'myapp:update_booking' %}"></a>
                 <a href="{% url 'myapp.delete_booking' booking.id %}" class="btn-danger">Delete</a>
             </td>
         </tr>

@@ -11,5 +11,6 @@ urlpatterns = [
     path('contact/', views.contact_page, name='contact_page'),
     path('booking/', views.booking_page, name='booking_page'), 
     path('show_bookings/', views.retrieve_bookings, name='booking'),
-    path('delete/<int:id>', views.delete_booking, name="delete")
+    path('delete/<int:id>', views.delete_booking, name="delete"),
+    # path('update/<int:id>', views.update_booking, name="update_booking")
 ]

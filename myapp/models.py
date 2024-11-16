@@ -10,5 +10,6 @@ class Booking(models.Model):
     people = models.PositiveIntegerField()
     message = models.TextField()
     
+    #to return the values in the human readable format
     def __str__(self):
         return self.name
