@@ -46,57 +46,64 @@
     {% endblock %}
 
     <footer id="footer" class="footer dark-background">
-          <div class="container">
-              <div class="row gy-3">
-                  <div class="col-lg-3 col-md-6 d-flex">
-                      <i class="bi bi-geo-alt icon"></i>
-                      <div class="address">
-                          <h4>Address</h4>
-                          <p>A108 Adam Street<br>New York, NY 535022</p>
-                      </div>
-                  </div>
-      
-                  <div class="col-lg-3 col-md-6 d-flex">
-                      <i class="bi bi-telephone icon"></i>
-                      <div>
-                          <h4>Contact</h4>
-                          <p>
-                              <strong>Phone:</strong> +1 5589 55488 55<br>
-                              <strong>Email:</strong> info@example.com
-                          </p>
-                      </div>
-                  </div>
-      
-                  <div class="col-lg-3 col-md-6 d-flex">
-                      <i class="bi bi-clock icon"></i>
-                      <div>
-                          <h4>Opening Hours</h4>
-                          <p>
-                              <strong>Mon-Sat:</strong> 11AM - 11PM<br>
-                              <strong>Sunday:</strong> Closed
-                          </p>
-                      </div>
-                  </div>
-      
-                  <div class="col-lg-3 col-md-6">
-                      <h4>Follow Us</h4>
-                      <div class="social-links d-flex">
-                          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                      </div>
-                  </div>
+        <div class="container">
+          <div class="row gy-3">
+            
+            <!-- Address Section -->
+            <div class="col-lg-3 col-md-6 d-flex">
+              <i class="bi bi-geo-alt icon"></i>
+              <div class="address">
+                <h4>Address</h4>
+                <p>123 Zuri Street<br>Nairobi, Kenya</p>
               </div>
-          </div>
+            </div><!-- End Address Section -->
       
-          <div class="container text-center mt-4">
-              <p>&copy; <span>{{ current_year }}</span> <strong class="px-1 sitename">Yummy</strong> All Rights Reserved</p>
-              <div class="credits">
-                  Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            <!-- Contact Section -->
+            <div class="col-lg-3 col-md-6 d-flex">
+              <i class="bi bi-telephone icon"></i>
+              <div>
+                <h4>Contact</h4>
+                <p>
+                  <strong>Phone:</strong> +254 700 123 456<br>
+                  <strong>Email:</strong> contact@zuriflavors.com
+                </p>
               </div>
+            </div><!-- End Contact Section -->
+      
+            <!-- Opening Hours Section -->
+            <div class="col-lg-3 col-md-6 d-flex">
+              <i class="bi bi-clock icon"></i>
+              <div>
+                <h4>Opening Hours</h4>
+                <p>
+                  <strong>Mon-Sat:</strong> 10AM - 10PM<br>
+                  <strong>Sunday:</strong> 12PM - 7PM
+                </p>
+              </div>
+            </div><!-- End Opening Hours Section -->
+      
+            <!-- Social Media Section -->
+            <div class="col-lg-3 col-md-6">
+              <h4>Follow Us</h4>
+              <div class="social-links d-flex">
+                <a href="https://twitter.com/ZuriFlavors" class="twitter" target="_blank"><i class="bi bi-twitter"></i></a>
+                <a href="https://facebook.com/ZuriFlavors" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+                <a href="https://instagram.com/ZuriFlavors" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a href="https://linkedin.com/company/ZuriFlavors" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div><!-- End Social Media Section -->
+            
           </div>
+        </div>
+      
+        <div class="container text-center mt-4">
+          <p>&copy; <span>{{ current_year }}</span> <strong class="px-1 sitename">Zuri Flavors</strong> All Rights Reserved</p>
+          <div class="credits">
+            Designed by <a href="https://bootstrapmade.com/">Martin Otieno</a>
+          </div>
+        </div>
       </footer>
+      
     <!-- Vendor JS Files -->
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>

@@ -19,7 +19,7 @@
             <div class="col-lg-4 reservation-img" style="background-image: url({% static 'assets/img/reservation.jpg' %});"></div>
 
             <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up" data-aos-delay="200">
-                <form action="#" method="post" role="form" class="php-email-form">
+                <form  method="POST">
                     {% csrf_token %}
                     <div class="row gy-4">
                         
@@ -61,18 +61,15 @@
                     </div>
 
                     <div class="text-center mt-3">
-                        <div class="loading">Loading</div>
+                        {% comment %} <div class="loading">Loading</div>
                         <div class="error-message"></div>
-                        <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+                        <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div> {% endcomment %}
                         <button type="submit" class="btn btn-primary">Book a Table</button>
                     </div>
                 </form>
             </div><!-- End Reservation Form -->
-
         </div>
-
     </div>
-
 </section><!-- /Book A Table Section -->
 
 {% endblock %}

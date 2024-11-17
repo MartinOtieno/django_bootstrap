@@ -9,8 +9,8 @@ urlpatterns = [
     path('chefs/', views.chefs_page, name='chefs_page'),
     path('gallery/', views.gallery_page, name='gallery_page'),
     path('contact/', views.contact_page, name='contact_page'),
-    path('booking/', views.booking_page, name='booking_page'), 
-    path('show_bookings/', views.retrieve_bookings, name='booking'),
-    path('delete/<int:id>', views.delete_booking, name="delete"),
-    # path('update/<int:id>', views.update_booking, name="update_booking")
+    path('booking/', views.booking, name='booking_page'),
+    path('show_bookings/', views.retrieve_bookings, name='show_bookings'),
+    path('delete/<int:id>/', views.delete_booking, name='delete_booking'),
+    path('update/<int:booking_id>/', views.update_booking, name='update_booking'),
 ]

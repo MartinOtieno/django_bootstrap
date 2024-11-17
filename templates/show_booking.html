@@ -1,5 +1,9 @@
-{% extends 'base.html' %} {% load static %} {% block title %} Show Appointment {% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
 
+{% block title %} Show Appointment {% endblock %}
+
+{% block content %}
 <table class="table table-light">
     <thead>
         <tr>
@@ -14,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for booking in booking %}
+        {% for booking in bookings %}
         <tr>
             <td>{{ booking.name }}</td>
             <td>{{ booking.email }}</td>
@@ -24,12 +28,13 @@
             <td>{{ booking.people }}</td>
             <td>{{ booking.message }}</td>
             <td>
-                <a href="{% url 'myapp:update_booking' %}"></a>
-                <a href="{% url 'myapp.delete_booking' booking.id %}" class="btn-danger">Delete</a>
+                {% comment %} <a href="{% url 'myapp:update_booking' booking.id %}" class="btn btn-primary">Update</a> {% endcomment %}
+                <a href="{% url 'delete_booking' booking.id %}" class="btn btn-danger">Delete</a>
+                <a href="{% url 'update_booking' booking.id %}" class="btn btn-warning">Update</a>
+
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
 {% endblock %}

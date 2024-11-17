@@ -1,35 +1,90 @@
-{% extends 'base.html' %} {% load static %} {% block title %} Show Appointment {% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
 
-<table class="table table-light">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Reservation Date</th>
-            <th>Reservation Time</th>
-            <th>People</th>
-            <th>Message</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for booking in booking %}
-        <tr>
-            <td>{{ booking.name }}</td>
-            <td>{{ booking.email }}</td>
-            <td>{{ booking.phone }}</td>
-            <td>{{ booking.date }}</td>
-            <td>{{ booking.time }}</td>
-            <td>{{ booking.people }}</td>
-            <td>{{ booking.message }}</td>
-            <td>
-                    <a href="{% url 'myapp:update_booking' %}"></a>
-                <a href="{% url 'myapp.delete_booking' booking.id %}" class="btn-danger">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% block title %}Update Booking{% endblock %}
 
+{% block content %}
+<div class="container mt-4">
+    <h2>Update Booking</h2>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                class="form-control" 
+                value="{{ booking.name }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-control" 
+                value="{{ booking.email }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone:</label>
+            <input 
+                type="text" 
+                id="phone" 
+                name="phone" 
+                class="form-control" 
+                value="{{ booking.phone }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="date" class="form-label">Reservation Date:</label>
+            <input 
+                type="date" 
+                id="date" 
+                name="date" 
+                class="form-control" 
+                value="{{ booking.date }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="time" class="form-label">Reservation Time:</label>
+            <input 
+                type="time" 
+                id="time" 
+                name="time" 
+                class="form-control" 
+                value="{{ booking.time }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="people" class="form-label">Number of People:</label>
+            <input 
+                type="number" 
+                id="people" 
+                name="people" 
+                class="form-control" 
+                value="{{ booking.people }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="message" class="form-label">Message:</label>
+            <textarea 
+                id="message" 
+                name="message" 
+                class="form-control" 
+                rows="3">{{ booking.message }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Booking</button>
+        <a href="{% url 'show_bookings' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+#import the model
 from .models import Booking
 
 
@@ -37,44 +38,58 @@ def menu_page(request):
     """ Display the menu page """
     return render(request, "menu.html")
 
-# Booking
-def booking_page(request):
-    """ Display the booking page """
-    return render(request, "booking.html")
-
+#Function to push the booking to the db
+def booking(request):
+    """ Function to push the booking to the db """
+    if request.method == 'POST':
+        # Create a new Booking object and save it
+        bookings = Booking(
+            name = request.POST['name'],
+            email = request.POST['email'],
+            phone = request.POST['phone'],
+            date = request.POST['date'],
+            time = request.POST['time'],
+            people = request.POST['people'],
+            message = request.POST['message'],
+        )
+        bookings.save()
+        # Redirect to the 'index_page' after successful form submission
+        return redirect('index_page')  # Use URL pattern name, not file path
+    else:
+        return render(request, 'booking.html')
 
 # Retrieve all bookings
 def retrieve_bookings(request):
     """ Retrieve/fetch all Bookings """
-    #create a variable to store these bookings
+    # create a variable to store these bookings
     bookings = Booking.objects.all()
     context = {'bookings':bookings}
     return render(request, 'show_booking.html', context)
-
 #Delete
 def delete_booking(request, id):
-    """ Deleting """
-    booking = Booking.objects.get(id=id) #fetch the particular booking by id
-    booking.delete()
-    # return redirect(myapp:show_bookings)#just remain on the same page
+    """Delete a booking by ID and redirect to the bookings list."""
+    booking = get_object_or_404(Booking, id=id)  # Use get_object_or_404 for better error handling
+    booking.delete()  # Delete the booking
+    return redirect("show_bookings")  # Redirect to the page that lists all bookings
+
+#update
+def update_booking(request, booking_id):
+    """Update the booking."""
+    booking = get_object_or_404(Booking, id=booking_id)
     
-    #update
-    # def update_booking(request, booking_id):
-    #     """ update the booking """
-    #     booking = get_object_or_404(Booking, id=booking_id)
-        #Put the condition for the form to update
-        # if request.method == 'POST':
-        #     booking.name = request.POST.get('name'),
-        #     booking.email = request.POST.get('email'),
-        #     booking.phone = request.POST.get('phone'),
-        #     booking.date = request.POST.get('date'),
-        #     booking.time = request.POST.get('time'),
-        #     booking.people = request.POST.get('people'),
-        #     booking.message = request.POST.get('message'),
-            #Once you click on the update button
-            # booking.save()
-            
-            # return redirect("myapp:show_bookings")
-        # context('booking', booking)
+    if request.method == 'POST':
+        # Update booking fields with form data
+        booking.name = request.POST.get('name')
+        booking.email = request.POST.get('email')
+        booking.phone = request.POST.get('phone')
+        booking.date = request.POST.get('date')
+        booking.time = request.POST.get('time')
+        booking.people = request.POST.get('people')
+        booking.message = request.POST.get('message')
+        booking.save()  # Save the updated booking
         
-        # return render(request, "update_booking.html")
+        return redirect("show_bookings")  # Redirect to the bookings list page
+    
+    # Pass the booking object to the template
+    context = {'booking': booking}
+    return render(request, "update_booking.html", context)
