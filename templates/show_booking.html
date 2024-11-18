@@ -28,8 +28,13 @@
             <td>{{ booking.people }}</td>
             <td>{{ booking.message }}</td>
             <td>
-                {% comment %} <a href="{% url 'myapp:update_booking' booking.id %}" class="btn btn-primary">Update</a> {% endcomment %}
-                <a href="{% url 'delete_booking' booking.id %}" class="btn btn-danger">Delete</a>
+                
+                <a href="{% url 'delete_booking' booking.id %}" 
+                class="btn btn-danger" 
+                onclick="return confirm('Do you really want to delete this booking?');">
+                Delete
+                </a>
+             
                 <a href="{% url 'update_booking' booking.id %}" class="btn btn-warning">Update</a>
 
             </td>
