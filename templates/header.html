@@ -1,41 +1,9 @@
-<style>
-    .accounts {
-        position: absolute;
-        /* Allows precise positioning */
-        top: 10px;
-        /* Adjust to your preferred distance from the top */
-        right: 10px;
-        /* Adjust to your preferred distance from the right */
-    }
-    
-    .accounts li {
-        display: inline;
-        /* Ensures the list items are displayed inline */
-        margin-left: 15px;
-        /* Adds spacing between the links */
-    }
-    
-    .accounts a {
-        text-decoration: none;
-        /* Removes underline from the links */
-        color: #333;
-        /* Set the color of the links */
-        font-size: 14px;
-        /* Adjust the font size as needed */
-    }
-    
-    .accounts a:hover {
-        color: #007BFF;
-        /* Optional: Changes the color when the link is hovered */
-        text-decoration: underline;
-        /* Optional: Adds underline on hover */
-    }
-</style>
-<div class="accounts">
-    <li><a href="{% url 'accounts:register' %}">Register</a></li>
-    <li><a href="{% url 'accounts:login' %}">Login</a></li>
-</div>
 <header id="header" class="header d-flex align-items-center sticky-top" style="background:#F8F8F8">
+    <div class="accounts" style="display: flex;">
+        <li><a href="{% url 'accounts:register' %}">Register</a></li>
+        <li><a href="{% url 'accounts:login' %}">Login</a></li>
+    </div>
+
     <div class="container position-relative d-flex align-items-center justify-content-between">
 
         <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">

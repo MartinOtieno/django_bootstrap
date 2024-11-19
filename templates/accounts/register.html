@@ -15,33 +15,65 @@
 	<p class="divider-text">
         <span class="bg-light">OR</span>
     </p>
-	<form method="post">
-                    {% csrf_token %}
+    <form method="post">
+	{% csrf_token %}
+	
+	<!-- Username Field -->
 	<div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-		 </div>
-        <input name="username" class="form-control" placeholder="Full name" type="text">
-    </div> <!-- form-group// -->
-    <div class="form-group input-group">
-
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-		</div>
-        <input name="password" class="form-control" placeholder="Create password" type="password">
-    </div> <!-- form-group// -->
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-		</div>
-        <input name="confirm_password" class="form-control" placeholder="Confirm password" type="password">
-    </div> <!-- form-group// -->                                      
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
-    </div> <!-- form-group// -->      
-    <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
-</form>
+	    <div class="input-group-prepend">
+	        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+	    </div>
+	    <input name="username" class="form-control" placeholder="Username" type="text" required>
+	</div>
+      
+	<!-- Email Field -->
+	<div class="form-group input-group">
+	    <div class="input-group-prepend">
+	        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+	    </div>
+	    <input name="email" class="form-control" placeholder="Email address" type="email" required>
+	</div>
+      
+	<!-- First Name Field -->
+	<div class="form-group input-group">
+	    <div class="input-group-prepend">
+	        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+	    </div>
+	    <input name="first_name" class="form-control" placeholder="First name" type="text" required>
+	</div>
+      
+	<!-- Last Name Field -->
+	<div class="form-group input-group">
+	    <div class="input-group-prepend">
+	        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+	    </div>
+	    <input name="last_name" class="form-control" placeholder="Last name" type="text" required>
+	</div>
+      
+	<!-- Password Field -->
+	<div class="form-group input-group">
+	    <div class="input-group-prepend">
+	        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+	    </div>
+	    <input name="password" class="form-control" placeholder="Create password" type="password" required>
+	</div>
+      
+	<!-- Confirm Password Field -->
+	<div class="form-group input-group">
+	    <div class="input-group-prepend">
+	        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+	    </div>
+	    <input name="confirm_password" class="form-control" placeholder="Confirm password" type="password" required>
+	</div>
+      
+	<!-- Submit Button -->
+	<div class="form-group">
+	    <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+	</div>
+      
+	<p class="text-center">Have an account? <a href="{% url 'accounts:login' %}">Log In</a></p>
+      </form>
+      
 </article>
 </div> <!-- card.// -->
 </div> 
