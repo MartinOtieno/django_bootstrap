@@ -38,6 +38,6 @@ def register(request):
     return render(request, 'accounts/register.html')
 
 #login page
-def login(request):
-    """ Display the home page """
+def login_view(request):
+    """ show the login page """
     return render(request, "accounts/login.html")
