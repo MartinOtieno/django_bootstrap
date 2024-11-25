@@ -46,7 +46,7 @@ def menu_page(request):
     return render(request, "menu.html")
 
 
-@login_required(login_url='accounts:login')
+# @login_required(login_url='accounts:login')
 def booking(request): #Function to push the booking to the db
     """ Function to push the booking to the db """
     if request.method == 'POST':  
@@ -120,5 +120,5 @@ def upload_image(request):
         return render(request, 'upload_success.html', {'file_url':file_url})
     return render(request, "upload_image.html")
 
-
+# Adding the mpesa function
 
