@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'proj_bootstrap.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytestdb', # The database name you created
+        'USER': 'root', #Default XAMPP username
+        'PASSWORD': '', #Default password is empty for the XAMPP
+        'HOST': '127.0.0.1', #XAMPP runs MySQL locally
+        'PORT': '3306', #Default MYSQL port
     }
 }
 
@@ -122,6 +126,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [BASE_DIR, 'static']
+
+MEDIA_URL = 'media/' #URL prefix for accessing media file
+MEDIA_ROOT = BASE_DIR / 'media' # Directory storing media files
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

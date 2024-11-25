@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.urls import reverse
 
 #create your views here
 #Register
@@ -28,7 +30,8 @@ def register(request):
                 
                 # Display a message
                 messages.success(request, "You have successfully created your account!")
-                return redirect('index_page')
+                print(reverse('login'))
+                return redirect('login')
             except:
                 # Display a message if the above fails
                 messages.error(request, "username already exist! use another username!")
@@ -40,4 +43,18 @@ def register(request):
 #login page
 def login_view(request):
     """ show the login page """
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        user = authenticate(request, username=username, password=password)
+        
+        #check
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'You are now logged in')
+            return redirect('index_page')
+        else:
+            messages.error(request, "Invalid login credentials")
+            
     return render(request, "accounts/login.html")

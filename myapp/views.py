@@ -1,6 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 #import the model
 from .models import Booking
+# Import the login_required
+
+from django.contrib.auth.decorators import login_required
+
+# from .models import UploadedImage
+from myapp.models import UploadedImage
+from django.core.files.storage import FileSystemStorage
 
 
 # Home
@@ -38,10 +45,11 @@ def menu_page(request):
     """ Display the menu page """
     return render(request, "menu.html")
 
-#Function to push the booking to the db
-def booking(request):
+
+@login_required(login_url='accounts:login')
+def booking(request): #Function to push the booking to the db
     """ Function to push the booking to the db """
-    if request.method == 'POST':
+    if request.method == 'POST':  
         # Create a new Booking object and save it
         bookings = Booking(
             name = request.POST['name'],
@@ -93,3 +101,24 @@ def update_booking(request, booking_id):
     # Pass the booking object to the template
     context = {'booking': booking}
     return render(request, "update_booking.html", context)
+
+def upload_image(request):
+    if request.method == 'POST':
+        # Retrieve data from the form
+        title = request.POST['title']
+        uploaded_file = request.FILES['image']
+        
+        # Save the file using filesystemStorage
+        fs = FileSystemStorage()
+        filename = fs.save(uploaded_file.name, uploaded_file)
+        file_url = fs.url(filename)
+        
+        # Save file information to the database
+        image = UploadedImage.objects.create(title=title, image=filename)
+        image.save()
+        
+        return render(request, 'upload_success.html', {'file_url':file_url})
+    return render(request, "upload_image.html")
+
+
+
