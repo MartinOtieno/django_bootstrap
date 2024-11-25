@@ -1,3 +1,8 @@
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 #import the model
 from .models import Booking
@@ -8,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 # from .models import UploadedImage
 from myapp.models import UploadedImage
 from django.core.files.storage import FileSystemStorage
+
+from myapp.credentials import LipanaMpesaPpassword, MpesaAccessToken
 
 
 # Home
@@ -121,4 +128,50 @@ def upload_image(request):
     return render(request, "upload_image.html")
 
 # Adding the mpesa function
+# Adding the mpesa functions
 
+#Display the payment form
+def pay(request):
+   """ Renders the form to pay """
+   return render(request, 'pay.html')
+
+
+# Generate the ID of the transaction
+def token(request):
+    """ Generates the ID of the transaction """
+    consumer_key = 'qvQFfRUmIIMKcLutXyGEdAbkKtYN7RzIjVKiMz8Ma94qQt4qYv6zDYiv2J67QvT0SrEV3aS7jY6AFpn1xeQGqOxpnHUpGmI9'
+    consumer_secret = 'AgQJDuDQrbGwuvwO2old3xGWGbNwR4NeigsvVQ7hA9Fj3BxmcuX43DFgSIgXbhfp'
+    api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
+
+    r = requests.get(api_URL, auth=HTTPBasicAuth(
+        consumer_key, consumer_secret))
+    mpesa_access_token = json.loads(r.text)
+    validated_mpesa_access_token = mpesa_access_token["access_token"]
+
+    return render(request, 'token.html', {"token":validated_mpesa_access_token})
+
+
+# Send the stk push
+def stk(request):
+    """ Sends the stk push prompt """
+    if request.method =="POST":
+        phone = request.POST['phone']
+        amount = request.POST['amount']
+        access_token = MpesaAccessToken.validated_mpesa_access_token
+        api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+        headers = {"Authorization": "Bearer %s" % access_token}
+        request = {
+            "BusinessShortCode": LipanaMpesaPpassword.Business_short_code,
+            "Password": LipanaMpesaPpassword.decode_password,
+            "Timestamp": LipanaMpesaPpassword.lipa_time,
+            "TransactionType": "CustomerPayBillOnline",
+            "Amount": amount,
+            "PartyA": phone,
+            "PartyB": LipanaMpesaPpassword.Business_short_code,
+            "PhoneNumber": phone,
+            "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
+            "AccountReference": "eMobilis",
+            "TransactionDesc": "Web Development Charges"
+        }
+        response = requests.post(api_url, json=request, headers=headers)
+        return HttpResponse("Success")

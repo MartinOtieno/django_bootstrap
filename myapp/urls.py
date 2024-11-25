@@ -14,4 +14,8 @@ urlpatterns = [
     path('delete/<int:id>/', views.delete_booking, name='delete_booking'),
     path('update/<int:booking_id>/', views.update_booking, name='update_booking'),
     path('upload/', views.upload_image, name='upload_image'),
+    
+    path('pay/', views.pay, name='pay'), # view the payment form
+    path('stk/', views.stk, name='stk'), # send the stk push prompt
+    path('token/', views.token, name='token'), # generate the token for that particular transaction
 ]
